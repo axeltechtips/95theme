@@ -3,29 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website with 95theme</title>
-    <link rel="stylesheet" href="95theme.css"> <!-- Link to your 95theme CSS file -->
+    <title>95theme</title>
     <style>
-        /* Additional styles specific to this page */
-        .content-container {
-            padding: 20px;
+        body {
+            font-family: "Arial", sans-serif;
+            background-color: #404040; /* Dark gray background */
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .startup-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #404040; /* Dark gray background */
+            color: #ffffff;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .startup-screen img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .loading-text {
+            font-size: 24px;
+        }
+        .window {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%; /* Adjusted width for mobile */
+            max-width: 500px; /* Limit width for larger screens */
+            background-color: #c0c0c0;
+            border: 2px solid #000;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+        .title-bar {
+            height: 20px;
+            background-color: #0000cd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5px;
+            font-family: "MS Sans Serif", Geneva, sans-serif;
+            font-size: 10px;
+            color: #ffffff;
+            cursor: move;
+        }
+        .title-bar .title {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .title-bar .close-button {
+            cursor: pointer;
+            color: #ffffff;
+            font-size: 12px;
+            padding: 0 5px;
+            background-color: #c0c0c0;
+        }
+        .content {
+            padding: 10px;
+            font-family: "MS Sans Serif", Geneva, sans-serif;
+            font-size: 12px;
+            color: #000000;
+        }
+        .button {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #404040; /* Dark gray background */
+            color: #fff;
+            border: 1px solid #000;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #00bfff;
         }
     </style>
 </head>
 <body>
-    <div class="window">
-        <div class="title-bar">
-            <div class="title">My Website with 95theme</div>
-            <div class="close-button" id="close-button">X</div>
-        </div>
-        <div class="content">
-            <div class="content-container">
-                <h1>Welcome to My Website</h1>
-                <p>This is a simple demonstration of 95theme applied to a webpage. Enjoy the nostalgic feel!</p>
-                <a href="#" class="button">Click Me!</a>
-            </div>
-        </div>
+    <div class="startup-screen" id="startup-screen">
+        <img src="windows95_startup.gif" alt="Windows 95 Startup">
     </div>
+
+    <audio id="startup-audio">
+        <source src="windows95_startup_sound.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Play startup sound
+        var startupSound = document.getElementById('startup-audio');
+        startupSound.play();
+
+        // Show startup screen
+        var startupScreen = document.getElementById('startup-screen');
+        startupScreen.style.display = 'flex';
+
+        // Simulate loading delay
+        setTimeout(function() {
+            // Hide startup screen after delay
+            startupScreen.style.display = 'none';
+            
+            // Show main content after delay
+            document.querySelector('.window').style.display = 'block';
+        }, 3000); // Reduce delay to 3 seconds
+
+        // JavaScript for window dragging
+        var windowElement = document.createElement('div');
+        windowElement.className = 'window';
+        windowElement.id = 'window';
+        windowElement.innerHTML = `
+            <div class="title-bar" id="title-bar">
+                <div class="title">95theme</div>
+                <div class="close-button" id="close-button">X</div>
+            </div>
+            <div class="content">
+                <p>welcome to my 95theme test site!</p>
+                <p>does itttt seem nostallgicccc??? i hope so!</p>
+                <a href="about.html" class="button">about me</a>
+                <a href="projects.html" class="button">test</a>
+                <a href="contact.html" class="button">test</a>
+                <a href="credits.html" class="button">test</a>
+                <a href="license.html" class="button">test</a>
+            </div>
+        `;
+
+        document.body.appendChild(windowElement);
+
+        var titleBar = document.getElementById('title-bar');
+        var isDragging = false;
+        var prevX, prevY;
+
+        titleBar.addEventListener('mousedown', function(e) {
+            isDragging = true;
+            prevX = e.clientX;
+            prevY = e.clientY;
+            // Prevent text selection during drag
+            document.body.style.userSelect = 'none';
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (isDragging) {
+                var deltaX = e.clientX - prevX;
+                var deltaY = e.clientY - prevY;
+                var newLeft = windowElement.offsetLeft + deltaX;
+                var newTop = windowElement.offsetTop + deltaY;
+                windowElement.style.left = newLeft + 'px';
+                windowElement.style.top = newTop + 'px';
+                prevX = e.clientX;
+                prevY = e.clientY;
+            }
+        });
+
+        document.addEventListener('mouseup', function() {
+            isDragging = false;
+            // Re-enable text selection after drag
+            document.body.style.userSelect = 'auto';
+        });
+    </script>
 </body>
 </html>
