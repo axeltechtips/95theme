@@ -25,3 +25,8 @@ Contributions are welcome! Whether you're interested in fixing bugs, adding feat
 ### License
 
 95theme is licensed under the [Apache License](LICENSE).
+
+
+### In progress / fixing
+CSS (finally!)
+& Startup sound
