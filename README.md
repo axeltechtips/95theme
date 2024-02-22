@@ -13,8 +13,8 @@
 
 ### Usage
 
-1. Include the 95theme CSS and JavaScript files in your project.
-2. Apply the theme to your website by linking the provided CSS file.
+1. Include the 95theme HTML files in your project.
+2. Apply the theme to your website by linking the provided HTML (css coming soon) file.
 3. Customize the theme to your liking using the available configuration options.
 4. Enjoy the nostalgic vibes of Windows 95 on your modern website!
 
