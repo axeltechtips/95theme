@@ -24,4 +24,4 @@ Contributions are welcome! Whether you're interested in fixing bugs, adding feat
 
 ### License
 
-95theme is licensed under the [MIT License](LICENSE).
+95theme is licensed under the [Apache License](LICENSE).
